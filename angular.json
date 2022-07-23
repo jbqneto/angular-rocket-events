@@ -18,6 +18,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "moment"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -92,10 +96,19 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "inject": false,
+                "input": "node_modules/moment/min/moment.min.js"
+              }
+              
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
