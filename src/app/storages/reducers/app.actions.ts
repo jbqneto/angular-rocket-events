@@ -13,4 +13,4 @@ export const SET_LESSONS = '[EVENT-APP] Set Lessons';
 export const getLessons = createAction(GET_LESSONS);
 export const getLessonsError = createAction(GET_LESSONS_ERROR, props<{message: string}>());
 export const getLessonsSuccess = createAction(GET_LESSONS_SUCCESS, props<{payload: ILesson[]}>());
-export const setLessons = createAction(SET_LESSONS, props<Payload<ILesson[]>>())
+export const setLessons = createAction(SET_LESSONS, props<Payload<ILesson[]>>());

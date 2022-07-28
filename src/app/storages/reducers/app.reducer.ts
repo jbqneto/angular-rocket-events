@@ -2,16 +2,24 @@ import { createReducer, on } from "@ngrx/store"
 import ILesson from "src/app/models/lesson.model"
 import { getLessons, getLessonsError, getLessonsSuccess, setLessons } from "./app.actions"
 
+export interface UrlRoute {
+    params: any,
+}
+
 export interface AppState {
     lessons: ILesson[],
     errors: string[],
     loading: boolean,
+    route: UrlRoute
 }
 
 export const initialState: AppState = {
     lessons: [],
     errors: [],
     loading: false,
+    route: {
+        params:{}
+    }
 }
 
 export const eventsReducer = createReducer(

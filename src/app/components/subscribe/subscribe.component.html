@@ -28,9 +28,10 @@
                     placeholder="Digite seu e-mail"
                     />
 
-                <button 
+                <button
+                    [disabled]="loading" 
                     type="submit"
-                    class="mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors"
+                    class="mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-25"
                 >
                     Garantir minha vaga
                 </button>

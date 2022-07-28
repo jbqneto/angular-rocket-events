@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  title: '',
+  graph_url: '',
+  graph_token: ''
 };

@@ -1,1 +1,7 @@
-<p>classroom works!</p>
+<div class="teachers">
+    <ul>
+        <li class="text-gray-300" *ngFor="let teacher of teachers">
+            <a [routerLink]="[teacher.id, 'lessons']">{{teacher.name}}</a>
+        </li>
+    </ul>
+</div>

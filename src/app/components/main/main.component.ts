@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log(this.router.getCurrentNavigation()?.extras.state);
+    
+    console.log(this.activatedroute.snapshot.params['slug']);
+    this.activatedroute.data.subscribe(data => {
+      console.log(data);
+    })
   }
 
 }

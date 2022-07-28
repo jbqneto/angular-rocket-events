@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
+import { SubscriptionService } from 'src/app/services/subscription.service';
+
+interface IFormUser {
+  name: string,
+  email: string,
+}
 
 @Component({
   selector: 'app-subscribe',
@@ -8,9 +16,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SubscribeComponent implements OnInit {
   public form: FormGroup;
+  public loading: boolean = false;
 
-  constructor() {
-    this.form = new FormGroup({
+  constructor(
+    private router: Router,
+    private service: SubscriptionService
+    ) {
+    
+      this.form = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required)
     })
@@ -21,7 +34,17 @@ export class SubscribeComponent implements OnInit {
 
   public onSubmit(event: Event) {
     event.preventDefault();
-    console.log(this.form.getRawValue());
+    this.loading = true;
+    const formValue = this.form.getRawValue() as IFormUser;
+
+    this.service.createSubscriber(formValue.name, formValue.email)
+    .pipe(
+      tap(() => this.loading = false),
+      tap((data) => console.log(data))
+    )
+    .subscribe(() => {
+      this.router.navigateByUrl('classes');
+    })
   }
 
 }
