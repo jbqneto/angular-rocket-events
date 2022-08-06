@@ -1,20 +1,20 @@
-<a href="#" class="group">
+<a [routerLink]="lessonLink" [ngClass]="{'is-active': isActive}" class="group">
     <div *ngIf="lesson !== null" [ngClass]="isLessonAvaiable ? 'avaiable' : 'unavaiable'" class="lesson-content">
         <span>
-            {{ lesson.availableAt.toString() }}
+            {{ formatedDate }}
         </span>
-        <div class="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
+        <div [ngClass]="{'bg-green-500': isActive}" class="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
             <header class="flex items-center justify-between">
-                <span class="text-sm text-blue-500 font-medium">
+                <span [ngClass]="{'text-blue-200': isActive, 'text-blue-500': !isActive, 'text-orange-400': !isLessonAvaiable}" class="text-sm font-medium">
                     <span class="ph-icon ph-smiley"></span>
-                    Conteúdo liberado
+                    {{contentText}}
                 </span>
-                <span class="text-xs rounded px-2 py-[0.125rem] text-white border border-green-300 font-bold">
+                <span [ngClass]="{'border-white': isActive, 'border-green-300': !isActive}" class="text-xs rounded px-2 py-[0.125rem] text-white border font-bold">
                     {{ lesson.type === 'live' ? 'Ao Vivo' : 'Aula liberada' }}
                 </span>
             </header>
 
-            <strong class="text-gray-200 mt-5 block">
+            <strong [ngClass]="{'text-white': isActive, 'text-gray-200': !isActive}" class="mt-5 block">
                 {{lesson.title}}
             </strong>
         </div>

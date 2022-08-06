@@ -7,3 +7,8 @@ export const selectAllLessons = createSelector(
     selectApp,
     (state) => ( state.lessons)
 )
+
+export const selectUrl = createSelector(
+    selectApp,
+    (state) => state.route
+)

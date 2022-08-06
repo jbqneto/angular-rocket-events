@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import ILesson from '../models/lesson.model';
+import { ILesson } from '../models/lesson.model';
 
 @Injectable({
   providedIn: 'root'

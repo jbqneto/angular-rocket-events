@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import moment from 'moment';
-import ILesson from 'src/app/models/lesson.model';
+import { Lesson } from '../../models/lesson.model';
 
 @Component({
   selector: 'app-lesson',
@@ -12,7 +12,7 @@ export class LessonComponent implements OnInit {
   constructor() { }
 
   @Input()
-  lesson: ILesson | null = null;
+  lesson: Lesson | null = null;
 
   ngOnInit(): void {
 
@@ -20,6 +20,22 @@ export class LessonComponent implements OnInit {
 
   get isLessonAvaiable(): boolean {
     return (!!this.lesson?.availableAt && moment(this.lesson?.availableAt).isBefore(new Date()));
+  }
+
+  get lessonLink(): string {
+    return '/lessons/' + this.lesson?.id;
+  }
+
+  get isActive(): boolean {
+    return this.lesson?.isActive ?? false;
+  }
+
+  get contentText(): string {
+    return (this.isLessonAvaiable) ? 'Conteúdo liberado' : 'Em breve';
+  }
+
+  get formatedDate(): string {
+    return this.lesson?.getFormatedDate() || '';
   }
 
 }
