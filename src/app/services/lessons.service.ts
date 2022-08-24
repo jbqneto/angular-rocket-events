@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
+import { GetLessonsDocument, GetLessonsGQL } from '../graphql/generated';
 import { ILesson } from '../models/lesson.model';
 
 @Injectable({
@@ -8,26 +9,13 @@ import { ILesson } from '../models/lesson.model';
 })
 export class LessonService {
 
-  constructor(private client: Apollo) {
+  constructor(private getLessonsGQL: GetLessonsGQL) {
 
   }
 
   public getLessons(): Observable<ILesson[]> {
-    const query = gql`
-    query {
-      lessons {
-        id
-        title,
-        availableAt,
-        slug,
-        lessonType
-      }
-    }
-    `;
-
-    return this.client.query({
-    query
-    }).pipe(
+    return this.getLessonsGQL.watch().valueChanges
+    .pipe(
       map(data => data.data as any),
       map((data) => {
         return data.lessons.map((lesson: any) => <ILesson> {

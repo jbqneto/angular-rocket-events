@@ -1,0 +1,18 @@
+query GetTeachers {
+    teachers {
+        id
+        name,
+        bio,
+        avatarURL
+    }
+}
+
+query GetLessons {
+    lessons {
+        id
+        title,
+        availableAt,
+        slug,
+        lessonType
+    }
+}

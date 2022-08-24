@@ -19,7 +19,8 @@ export class MainComponent implements OnInit {
         const url = urlSegments.map((segment) => segment.path).join('/');
         
         this.store.dispatch(setUrl({url, params: params}));
-      });
+      })
+
   }
 
 }

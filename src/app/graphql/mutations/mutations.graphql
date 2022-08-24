@@ -1,0 +1,11 @@
+mutation CreateSubscriber ($name: String!, $email: String!) {
+    createSubscriber(data: {name: $name, email: $email}) {
+        id
+    }
+}
+
+mutation CreateTeacher ($name: String!, $email: String!, $bio: String!, $avatarURL: String) {
+    createTeacher(data: {name: $name, email: $email, bio: $bio, avatarURL: $avatarURL}) {
+        id
+    }
+}

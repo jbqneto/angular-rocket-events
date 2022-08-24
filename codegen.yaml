@@ -1,0 +1,9 @@
+schema: https://api-eu-central-1.graphcms.com/v2/cl5e5ctwd0lsg01ugd1ayczga/master
+documents: './src/app/graphql/**/*.graphql'
+
+generates:
+  ./src/app/graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular

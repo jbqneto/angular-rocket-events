@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable, tap } from 'rxjs';
+import { CreateSubscriberDocument, CreateSubscriberGQL, CreateSubscriberMutation } from '../graphql/generated';
 
 interface ISubscriber {
   name: string,
@@ -17,25 +18,14 @@ interface IResponse {
 })
 export class SubscriptionService {
 
-  constructor(private client: Apollo) {
+  constructor(private postSubscriberGQL: CreateSubscriberGQL) {
 
   }
 
   public createSubscriber(name: string, email: string): Observable<ISubscriber> {
-    const mutation = gql`
-      mutation CreateSubscriber ($name: String!, $email: String!) {
-        createSubscriber(data: {name: $name, email: $email}) {
-          id
-        }
-      }
-    `;
-
-    return this.client.mutate({
-      mutation,
-      variables: {
+    return this.postSubscriberGQL.mutate({
         name,
         email
-      }
     }).pipe(
       tap((data) => console.log(data)),
       map(({data}) => ((data as any).createSubscriber)),
@@ -46,8 +36,6 @@ export class SubscriptionService {
           id: response.id
         }
       )
-    ))
-      
+    ));
   }
-  
 }
