@@ -39,6 +39,7 @@
     "@graphql-codegen/typescript": "^2.7.3",
     "@graphql-codegen/typescript-apollo-angular": "^3.5.3",
     "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@ngx-env/builder": "^2.2.0",
     "@types/jasmine": "~4.0.0",
     "autoprefixer": "^10.4.7",
     "jasmine-core": "~4.1.0",
